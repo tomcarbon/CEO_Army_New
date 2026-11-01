@@ -1,0 +1,32 @@
+# Budget lines. Crossing any line is the `spend` approval gate (docs/approval-gates.md).
+# VP Finance proposes; the board sets. Cost Analyst reports burn. All amounts USD unless noted.
+#
+# These are placeholders for the board to set at its first session. Until set, treat every
+# line as 0 — meaning every spend that costs real money needs a human yes. Token estimates
+# for agent calls are tracked but not gated until the board says so.
+
+period: monthly
+currency: USD
+
+company:
+  total: 0
+  warn_at_pct: 80
+
+by_function:
+  technology: 0
+  security: 0
+  marketing: 0        # includes all media generation
+  sales: 0
+  finance: 0
+  people: 0
+  qc: 0
+
+per_work_order:
+  default_usd: 0
+  default_tokens: 500000
+  warn_at_pct: 80
+
+per_project: {}       # project-name: usd
+
+# Recurring costs need their own explicit line and a human yes to start.
+recurring: []

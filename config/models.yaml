@@ -1,0 +1,36 @@
+# Model tier mapping for adapters.
+#
+# Charters say a *tier* (model_hint: frontier | default | economy). This file says what each
+# tier means on the current platform. Switch the whole company's cost mode by changing
+# `active` and re-rendering — no charter edits needed:
+#
+#   ./adapters/claude-code/render.sh                     # uses `active`
+#   MODEL_PROFILE=economy ./adapters/claude-code/render.sh   # one-off override
+#
+# Three levels of control, cheapest to most precise:
+#   1. Session model (/model in Claude Code) — the CEO and every `inherit` role follow it.
+#   2. This file — what frontier/default/economy mean.
+#   3. A charter's model_hint — which tier one role sits in.
+#
+# Cost Analyst recommends changes here with QC evidence; VP Finance signs off. Quality note:
+# frontier-tier roles are the ones whose judgement is expensive to get wrong (QC, security
+# review, ethics, architecture). Cheaper developers and writers is usually a fine trade;
+# cheaper QC is the place to be careful.
+
+active: standard
+
+profiles:
+  standard:            # judgement-heavy roles on the strongest model
+    frontier: opus
+    default: inherit   # follows the session model
+    economy: haiku
+  balanced:
+    frontier: sonnet
+    default: sonnet
+    economy: haiku
+  economy:             # cheapest; QC/security verdicts are weaker — use knowingly
+    frontier: sonnet
+    default: haiku
+    economy: haiku
+
+# Values are Claude Code model aliases (opus, sonnet, haiku, inherit); a full model id also works.

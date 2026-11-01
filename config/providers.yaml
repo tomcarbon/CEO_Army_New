@@ -1,0 +1,164 @@
+# Generative / model providers the company may use.
+#
+# Rules
+# - No secrets here. Keys live in the environment of whoever runs the adapter.
+# - A provider is usable only when `status: approved` and the approval is recorded in
+#   records/board/ (the `new-provider` gate). Everything below starts as `candidate`.
+# - Compliance & Licensing fills `terms_summary` (path to config/providers/<name>.md) before
+#   a provider goes to the board. Cost Analyst keeps `pricing` current with a date.
+# - Media roles read `selected` for their medium; if null, they hand off prompt packs to a
+#   human instead of calling anything.
+
+selected:
+  image: null
+  video: null
+  music: null
+  voice: null
+  llm: null        # the model platform the adapters run on; Claude Code today
+
+image:
+  - name: openai-gpt-image
+    kind: hosted
+    status: candidate
+    notes: General purpose; good instruction following.
+    terms_summary: null
+    pricing: null
+  - name: google-imagen
+    kind: hosted
+    status: candidate
+    notes: Also available via Gemini image models.
+    terms_summary: null
+    pricing: null
+  - name: midjourney
+    kind: hosted
+    status: candidate
+    notes: Strong aesthetics; API access historically limited — verify.
+    terms_summary: null
+    pricing: null
+  - name: ideogram
+    kind: hosted
+    status: candidate
+    notes: Reliable text rendering inside images (logos, posters).
+    terms_summary: null
+    pricing: null
+  - name: recraft
+    kind: hosted
+    status: candidate
+    notes: Vector / SVG output; brand-style consistency.
+    terms_summary: null
+    pricing: null
+  - name: flux
+    kind: local
+    status: candidate
+    notes: Open weights; run via ComfyUI or diffusers. Check licence tier for commercial use.
+    terms_summary: null
+    pricing: null
+  - name: stable-diffusion
+    kind: local
+    status: candidate
+    notes: Open weights via ComfyUI; large ecosystem.
+    terms_summary: null
+    pricing: null
+
+video:
+  - name: google-veo
+    kind: hosted
+    status: candidate
+    notes: Native audio in recent versions.
+    terms_summary: null
+    pricing: null
+  - name: openai-sora
+    kind: hosted
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: runway
+    kind: hosted
+    status: candidate
+    notes: Gen-4 family; strong editing tools.
+    terms_summary: null
+    pricing: null
+  - name: kling
+    kind: hosted
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: luma
+    kind: hosted
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: wan
+    kind: local
+    status: candidate
+    notes: Open weights.
+    terms_summary: null
+    pricing: null
+  - name: hunyuan-video
+    kind: local
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: ltx-video
+    kind: local
+    status: candidate
+    notes: Fast; lower resource needs.
+    terms_summary: null
+    pricing: null
+
+music:
+  - name: suno
+    kind: hosted
+    status: candidate
+    notes: Full songs with vocals.
+    terms_summary: null
+    pricing: null
+  - name: udio
+    kind: hosted
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: elevenlabs-music
+    kind: hosted
+    status: candidate
+    terms_summary: null
+    pricing: null
+  - name: stable-audio
+    kind: hosted
+    status: candidate
+    notes: Also has open-weight variants.
+    terms_summary: null
+    pricing: null
+  - name: musicgen
+    kind: local
+    status: candidate
+    notes: Meta AudioCraft; instrumental.
+    terms_summary: null
+    pricing: null
+
+voice:
+  - name: elevenlabs
+    kind: hosted
+    status: candidate
+    notes: TTS, SFX, voice design. Voice cloning requires consent + human approval (see music-sound charter).
+    terms_summary: null
+    pricing: null
+  - name: xtts
+    kind: local
+    status: candidate
+    notes: Coqui XTTS; open weights.
+    terms_summary: null
+    pricing: null
+  - name: bark
+    kind: local
+    status: candidate
+    terms_summary: null
+    pricing: null
+
+llm:
+  - name: claude-code
+    kind: hosted
+    status: approved       # implicit: it's what we're running on. Record formally at first board session.
+    notes: Adapter at adapters/claude-code/. Main session = CEO; roles = subagents.
+    terms_summary: null
+    pricing: null

@@ -1,0 +1,20 @@
+# Secrets — never commit. Provider keys go in your shell env or a local .env.
+.env
+.env.*
+*.key
+*.pem
+secrets/
+
+# Generated media assets (large binaries). Commit provenance notes, not the files.
+assets/generated/
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.flac
+*.psd
+
+# Local scratch
+.scratch/
+*.log
+.DS_Store
